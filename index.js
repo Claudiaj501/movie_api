@@ -42,6 +42,7 @@ app.get('/users', (req, res) => {
 
 // Get a user by username
 app.get('/users/:Username', (req, res) => {
+  console.log("params", req.params)
   Users.findOne({ Username: req.params.Username })
     .then((user) => {
       res.json(user);
@@ -131,7 +132,7 @@ app.get('/users/:Username', (req, res) => {
     Users.findOneAndUpdate (
       {Username: req.params.Username},
       {
-        $push: { Fav: req.params.MovieID },
+        $push: { FavouriteMovies: [req.params.MovieID] },
       },
       { new: true},
       (err, updatedUser) => {
