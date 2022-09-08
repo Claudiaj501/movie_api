@@ -128,11 +128,11 @@ app.get('/users/:Username', (req, res) => {
   });
   //create favorite movie to use
 
-  app.post('/users/:Username/Movies/:MovieID', (req, res) => {
+  app.post('/users/:Username/movies/:Movie', (req, res) => {
     Users.findOneAndUpdate (
       {Username: req.params.Username},
       {
-        $push: { FavouriteMovies: [req.params.MovieID] },
+        $push: { FavouriteMovies: req.params.Movie },
       },
       { new: true},
       (err, updatedUser) => {
