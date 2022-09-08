@@ -186,18 +186,22 @@ app.get('/users/:Username', (req, res) => {
     });
   });
   //delete fav movie
-  app.delete('/users/:id/:movieTitle', (req, res) => {
-    const { id, movieTitle } = req.params;
-
-    let user = users.find( user => user.id == id );
-
-    if (user) {
-      user.favouriteMovies = user.favouriteMovies.filter(title => title !== movieTitle);
-      res.status(200).send(`${movieTitle} has been removed from ${user.name}'s array`);
+  app.delete('/users/:Username/movies/:Movie', (req, res) => {
+  Users.findOneAndUpdate({ Username: req.params.Username }, {
+     $pull: { FavouriteMovies: req.params.Movie }
+   },
+   { new: true }, // This line makes sure that the updated document is returned
+  (err, updatedUser) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
     } else {
-      res.status(400).send('No such user found!');
+      res.json(updatedUser);
     }
   });
+});
+
+
    app.use(express.static('public'));
 
    //error handling
