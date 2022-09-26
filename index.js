@@ -49,7 +49,7 @@ require('./passport');
   // GET requests
   // default text response when at /
 app.get("/",(req,res) => {
-  res.send("Welcome to MyFlix!)");
+  res.send("Welcome to MyFlix!");
 });
 
 // Get all users
