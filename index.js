@@ -81,16 +81,27 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (r
     });
 });
 
-  app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
-    Movies.find()
-    .then((movies) => {
-      res.status(201).json(movies);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error:" + err);
-    });
+  // app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+  //   Movies.find()
+  //   .then((movies) => {
+  //     res.status(201).json(movies);
+  //   })
+  //   .catch((err) => {
+  //     console.error(err);
+  //     res.status(500).send("Error:" + err);
+  //   });
 
+  // });
+
+  app.get("/movies", function (req, res) {
+    Movies.find()
+      .then(function (movies) {
+        res.status(201).json(movies);
+      })
+      .catch(function (error) {
+        console.error(error);
+        res.status(500).send("Error: " + error);
+      });
   });
 
   app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
