@@ -29,6 +29,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // allows all domains access
 const cors = require('cors');
 app.use(cors());
+
+
 // allows only certain domains to access
 // const cors = require('cors');
 // let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
