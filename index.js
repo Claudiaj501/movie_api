@@ -26,12 +26,9 @@ app.use(morgan('common'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const cors = require('cors');
-const allowedOrigins = ['https://Claudiaj501.github.io', 'http://localhost:1234', '*', 'http://localhost:4200', 'localhost:4200', 'localhost:1234', 'https://myflix-firstapi.herokuapp.com']
-
 // allows all domains access
-// const cors = require('cors');
-// app.use(cors());
+const cors = require('cors');
+app.use(cors());
 // allows only certain domains to access
 // const cors = require('cors');
 // let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
